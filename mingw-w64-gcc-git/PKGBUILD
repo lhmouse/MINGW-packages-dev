@@ -60,6 +60,7 @@ source=(${_sourcedir}::"git://gcc.gnu.org/git/gcc.git#branch=${_branch}"
         "0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch"
         "0016-Ensure-lmsvcrt-precede-lkernel32.patch"
         "0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch"
+        "0021-gcc-Add-ll-and-L-length-modifiers-for-ms_printf.patch"
         "0150-gcc-10.2.0-libgcc-ldflags.patch")
 sha256sums=('SKIP'
             'dcc6ec24d7946643b35fce57c50d9900bcdbeb8723981ee5e7ff2ae935137598'
@@ -74,6 +75,7 @@ sha256sums=('SKIP'
             '2321c7dce29a600477e481d16d847f05dc8c6d6461ee1eba7814c5bf62c2ef95'
             'f96348a858722d6de87445e264a7b021f684b5fb11fcd8f7fbfbc9a8fb2d45e1'
             '2331365b6d42250d83eba36a1ef1a02e56b81a7c2595df6a43cb1a6abbcb99f0'
+            '32cff8c7ec65767773a5bb1efc9cf6635a3fba2e76a115676b30aa14a470e70b'
             '7f0b4e45d933e18c9d8bd2afcd83e4f52e97e2e25dd41bfa0cba755c70e591c7')
 
 _threads="posix"
@@ -104,6 +106,7 @@ prepare() {
   ${GIT_AM} ${srcdir}/0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch
   ${GIT_AM} ${srcdir}/0016-Ensure-lmsvcrt-precede-lkernel32.patch
   ${GIT_AM} ${srcdir}/0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch
+  ${GIT_AM} ${srcdir}/0021-gcc-Add-ll-and-L-length-modifiers-for-ms_printf.patch
 
   patch -Nbp1 -i "${srcdir}/0150-gcc-10.2.0-libgcc-ldflags.patch"
 
