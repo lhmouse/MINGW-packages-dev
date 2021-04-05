@@ -23,6 +23,7 @@ depends=("${MINGW_PACKAGE_PREFIX}-binutils"
          "${MINGW_PACKAGE_PREFIX}-zlib"
          "${MINGW_PACKAGE_PREFIX}-mcfgthread-libs")
 arch=('any')
+mingw_arch=('mingw32' 'mingw64' 'ucrt64')
 url="https://gcc.gnu.org"
 license=('GPL' 'LGPL' 'FDL' 'custom')
 groups=("${MINGW_PACKAGE_PREFIX}-toolchain")
@@ -275,5 +276,14 @@ package_mingw-w64-x86_64-gcc-mcf() {
 }
 
 package_mingw-w64-x86_64-gcc-mcf-libs() {
+  package_mingw-w64-gcc-mcf-libs
+}
+
+# UCRT 64-bit wrappers
+package_mingw-w64-ucrt-x86_64-gcc-mcf() {
+  package_mingw-w64-gcc-mcf
+}
+
+package_mingw-w64-ucrt-x86_64-gcc-mcf-libs() {
   package_mingw-w64-gcc-mcf-libs
 }
