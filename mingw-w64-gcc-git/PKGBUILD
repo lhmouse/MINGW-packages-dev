@@ -18,7 +18,7 @@ pkgname=("${MINGW_PACKAGE_PREFIX}-${_realname}-git"
          $([[ "$_enable_ada" == "yes" ]] && echo "${MINGW_PACKAGE_PREFIX}-${_realname}-ada-git")
          $([[ "$_enable_objc" == "yes" ]] && echo "${MINGW_PACKAGE_PREFIX}-${_realname}-objc-git")
         )
-pkgver=10.0.1.d20200507.c12.g0df8d1efee2
+pkgver=11.1.1.d20210429.c12.g4e54a34eed4
 pkgrel=1
 pkgdesc="GCC for the MinGW-w64"
 arch=('any')
@@ -43,7 +43,7 @@ optdepends=()
 options=('staticlibs' '!emptydirs' '!strip' 'debug')
 
 #_branch=releases/gcc-7
-_branch=releases/gcc-10
+_branch=releases/gcc-11
 _realpkgver="$(git archive --remote=git://gcc.gnu.org/git/gcc.git refs/heads/${_branch}:gcc/ BASE-VER | tar -xO)"
 
 # git+https://gcc.gnu.org/git/gcc.git#branch=${_branch}
@@ -58,8 +58,6 @@ source=(${_sourcedir}::"git://gcc.gnu.org/git/gcc.git#branch=${_branch}"
         "0010-Fix-using-large-PCH.patch"
         "0011-Enable-shared-gnat-implib.patch"
         "0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch"
-        "0015-makedeps-properly-handle-win-paths.patch"
-        "0016-Ensure-lmsvcrt-precede-lkernel32.patch"
         "0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch"
         "0150-gcc-10.2.0-libgcc-ldflags.patch")
 sha256sums=('SKIP'
@@ -67,14 +65,12 @@ sha256sums=('SKIP'
             '6033acda690786397059536787a6577e1a9f2b39f8a66276821917066094f43c'
             '388f423a67e4be6f547ca7e340ff8ee4c78b1ed83f3fd698daa409e309911807'
             '6e407a782d3fb636d800a4278fbe1da876732ea17cba6aa82c261b6ec6ec2073'
-            'd1e10cd2ef5594c34acead334bb93af500e00699ba673edc8916da22a572677d'
+            'eb2a245c683e182fc305f59a13b10353a67b6571bfa07dff5e2281b93f145d36'
             '3629446c0039d9061cfedcb6d7a7589279588bb4601c7ce233546d357bd4be34'
             'ec6800816632234afc35ce40542a6aab3ee76e8514a7d0cb4171fd874353ecd7'
             '7a201413020cc9d7357e51921f49b22092fec2b644c36f4420c65966a67ec68c'
             '8faff8e503a617f283270f411399a8bcacda3ab62b4072dedf117e108af4844a'
             '2321c7dce29a600477e481d16d847f05dc8c6d6461ee1eba7814c5bf62c2ef95'
-            'e6b8a610142836ae9c5eba3c5ecbb3766078ac530483590c587b3c6341508af0'
-            'f96348a858722d6de87445e264a7b021f684b5fb11fcd8f7fbfbc9a8fb2d45e1'
             '2331365b6d42250d83eba36a1ef1a02e56b81a7c2595df6a43cb1a6abbcb99f0'
             '7f0b4e45d933e18c9d8bd2afcd83e4f52e97e2e25dd41bfa0cba755c70e591c7')
 
@@ -104,8 +100,6 @@ prepare() {
   ${GIT_AM} ${srcdir}/0010-Fix-using-large-PCH.patch
   ${GIT_AM} ${srcdir}/0011-Enable-shared-gnat-implib.patch
   ${GIT_AM} ${srcdir}/0014-gcc-9-branch-clone_function_name_1-Retain-any-stdcall-suffix.patch
-  ${GIT_AM} ${srcdir}/0015-makedeps-properly-handle-win-paths.patch
-  ${GIT_AM} ${srcdir}/0016-Ensure-lmsvcrt-precede-lkernel32.patch
   ${GIT_AM} ${srcdir}/0020-libgomp-Don-t-hard-code-MS-printf-attributes.patch
 
   patch -Nbp1 -i "${srcdir}/0150-gcc-10.2.0-libgcc-ldflags.patch"
